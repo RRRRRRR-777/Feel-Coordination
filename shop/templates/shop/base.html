@@ -17,7 +17,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
     <!-- hoverのために追加した -->
     <style type="text/css">
@@ -39,6 +38,10 @@
 </head>
 
 <body id="page-top">
+
+    <!-- navbar -->
+    {% include 'navbar.html' %}
+
     <center>
         <h1>Heloo, World</h1>
         <h2>This is Toppage</h2>
