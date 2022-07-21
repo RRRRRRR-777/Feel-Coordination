@@ -11411,8 +11411,6 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../img01/header-bg.jpg");
-  background-image: url("../img01/header-bg.jpg") !important;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
