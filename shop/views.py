@@ -20,9 +20,9 @@ from django.db.models import Q
 
 
 
-# import code
-# console = code.InteractiveConsole(locals=locals()) # <- locals=locals() が重要
-# console.interact()
+import code
+console = code.InteractiveConsole(locals=locals()) # <- locals=locals() が重要
+console.interact()
 
 
 def all_products(request):
