@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block metadescription %}
+{% if Category %}
+{{ Category.description|truncatewords:155 }}
+{% else %}
+快適で素晴らしいクッションを購入できるクッションストアへようこそ。
+{% endif %}
+{% endblock %}
+{% block title %}
+{% if Category %}
+{{ Category.name }} - 素晴らしいクッションストア
+{% else %}
+私達のクッションコレクションを御覧ください - 素晴らしいクッションストア
+{% endif %}
+{% endblock %}
