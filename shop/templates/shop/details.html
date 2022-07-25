@@ -1,0 +1,35 @@
+{% load staticfiles %}
+{% load humanize %}
+
+<section class="page-section bg-light" id="details">
+    <div class="container">
+        <div class="text-center" style="text-align: center;">
+            <h1 class="h1 " style="text-align: center; padding: 30px; border: solid 3px black; border-radius: 10px;
+                     background: hsla(0, 0%, 49%, 0.15); margin-bottom: 2.5em;">アイテム</h1>
+        </div>
+        <h2 class="row">
+            <div class="row">
+                {% for detail in details %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mx-auto">
+                    <div class="portfolio-item">
+                        <div class="mx-auto" style="width: 200px;">
+                            <div class="portfolio-link">
+                                {% for subtag in detail.subtag.all %}
+
+                                <!-- dにテンプレートからviewへのテンプレートを入れるためにしている -->
+                                <a href="/{{ detail.slug }}/?d={{ subtag.name }}">
+                                    <img src="{{detail.image.url}}" alt="{{detail.name}}" width="200" height="320">
+                                </a>
+                                {% endfor %}
+                            </div>
+                            <div>
+                                <h5 style="text-align: center;">{{detail.name}}</h5>
+                                <h4>¥{{detail.price | intcomma}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>      
+    </div>
+</section>

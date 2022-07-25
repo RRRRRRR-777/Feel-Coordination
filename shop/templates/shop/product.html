@@ -1,0 +1,240 @@
+{% load staticfiles %}
+{% load humanize %}
+
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center" style="text-align: center;">
+            <h1 class="h1 " style="text-align: center; padding: 30px; border: solid 3px black; border-radius: 10px;
+             background: hsla(0, 0%, 49%, 0.15); margin-bottom: 2.5em;">コーディネート</h1>
+        </div>
+        <h2 class="row">
+            <div class="row">
+                {% for product in products %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mx-auto">
+                    <div class="portfolio-item">
+                        <div class="mx-auto" style="width: 200px;">
+                            <div class="portfolio-link" data-bs-toggle="modal">
+                                <a data-bs-toggle="modal" href="#{{product.slug}}">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content">
+                                            <!-- 浮く画像 -->
+                                            <div class="d-flex justify-content-center">
+                                                <div class="hover-bg">
+                                                    <div style="text-align: center;">
+                                                        {% for detail in product.detail.all %}
+                                                        <!-- hover_image1 -->
+                                                        <div>
+                                                            {% if forloop.counter == 1 %}
+                                                            <img src="{{ detail.image.url }}" alt="{{ detail.name }}hover_image"
+                                                                width="80" height="64">
+                                                            <div style="font-size: 10px;">{{ detail.name }}</div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <!-- hover_image2 -->
+                                                        <div>
+                                                            {% if forloop.counter == 2 %}
+                                                            <img src="{{ detail.image.url }}" alt="{{ detail.name }}hover_image"
+                                                                width="80" height="64">
+                                                            <div style="font-size: 10px;">{{ detail.name }}</div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <!-- hover_image3 -->
+                                                        <div>
+                                                            {% if forloop.counter == 3 %}
+                                                            <img src="{{ detail.image.url }}" alt="{{ detail.name }}hover_image"
+                                                                width="80" height="64">
+                                                            <div style="font-size: 10px;">{{ detail.name }}</div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <!-- hover_image4 -->
+                                                        <div>
+                                                            {% if forloop.counter == 4 %}
+                                                            <img src="{{ detail.image.url }}" alt="{{ detail.name }}hover_image"
+                                                                width="80" height="64">
+                                                            <div style="font-size: 10px;">{{ detail.name }}</div>
+                                                            {% endif %}
+                                                        </div>
+                                                        {% endfor %}
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- もともとの画像 -->
+                                    <img src="{{product.image.url}}" alt="{{product.name}}" width="200" height="320">
+                                </a>
+                            </div>
+                            <div>
+                                <h5 style="text-align: center;">{{product.name}}</h5>
+                                <h4>¥{{product.price | intcomma}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- modal -->
+            <!-- Portfolio item  modal popup-->
+            {% for product in products %}
+            <div class="portfolio-modal modal fade" id="{{product.slug}}" tabindex="-1" role="dialog"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="close-modal" data-bs-dismiss="modal">
+                            <img src="{% static 'img01/close-icon.svg' %}" alt="Close modal" />
+                        </div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="modal-body">
+                                        <!-- Project details-->
+                                        <h3 class="text-uppercase">コーディネート名:{{product.name}}</h3>
+                                        <h3 class="text-uppercase">ハッシュタグ :
+                                            {% for tag in product.tags.all %}
+                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#post{{ tag.name }}">
+                                                #{{ tag.name }}
+                                            </button>
+                                            {% endfor %}
+                                        </h3>
+                                        <p class="text-uppercase">トータルコーディネート価格 : ¥{{product.price | intcomma}} <span
+                                                style="font-size: 12px;">(税込み)</span></p>
+                                        <div style="display: block;margin-left: auto; margin-right: auto; width: auto;">
+                                            <model-viewer ar alt="Leoモデル" src="media/{{ product.file }}" ios-src=""
+                                                style="width:400px;height:500px;text-align: center; display: block;margin-left: auto; margin-right: auto;"
+                                                background-color="#70BCD1" shadow-intensity="0.7" camera-controls
+                                                interaction-prompt="auto" auto-rotatearmagic-leap>
+                                            </model-viewer>
+                                        </div>
+                                        <!-- 商品 -->
+                                        <div class="d-flex justify-content-around">
+                                            {% for detail in product.detail.all %}
+                                            {% for subtag in detail.subtag.all %}
+                                            <div>
+                                                <a href="/{{ detail.slug }}/?d={{ subtag.name }}" class="text-body mr-1" style="text-decoration: none;">
+                                                    <img src="{{ detail.image.url }}" alt="{{ detail.name }}" height="200px">
+                                                    <p style="font-size: 12px;"><b>{{ detail.name }}</b></p>
+                                                </a>
+                                            </div>
+                                            {% endfor %}
+                                            {% endfor %}
+                                        </div>
+
+                                        <h3>コーディネート説明</h3>
+                                        <p>{{product.description}}</p>
+                                        <ul class="list-inline">
+                                            <li style="font-size: 15px;">
+                                                商品投稿日 : {{product.created}}
+                                            </li>
+                                        </ul>
+                                        <button class="btn btn-info btn-xl text-uppercase" data-bs-dismiss="modal"
+                                            type="button">
+                                            <i class="fas fa-xmark me-1"></i>
+                                            Close Product
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- pagination -->
+            <div class="row">
+                <div class="mx-auto">
+                    {% if products.paginator.num_pages > 1 %}
+                    <hr>
+                    <div class="text-center">
+                        {% for pg in products.paginator.page_range %}
+                        <a href="?page={{pg}}"
+                            class="btn btn-light btn-sm {% if products.number == pg %}active{% endif %}">{{pg}}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+    </div>
+</section>
+
+<!-- modal hashtag -->
+{% for product in products %}
+{% for tag in product.tags.all %}
+{% with p=tag.name%}
+<div class="portfolio-modal modal fade" id="post{{ tag.name }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <h1 class="modal-title" id="exampleModalLabel">#{{ tag.name }}</h1>
+            <div class="close-modal" data-bs-dismiss="modal">
+                <img src="{% static 'img01/close-icon.svg' %}" alt="Close modal" />
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="modal-body">
+                            <!-- Project details-->
+                            <div class="container">
+                                <h2 class="modal-title" id="exampleModalLabel">コーディネート</h2>
+                                <div class="row mx-auto mt-5">
+                                    <!-- コーディネート -->
+                                    {% for product in products %}
+                                    {% for tag in product.tags.all %}
+                                    {% if tag.name == p %}
+                                    <div class="col-3 mx-auto">
+                                        <div class="portfolio-link" data-bs-toggle="modal">
+                                            <a data-bs-toggle="modal" href="#{{product.slug}}">
+                                                <img class="card-img-top my_image" src="{{product.image.url}}"
+                                                    alt="{{product.name}}" width="50%" height="50%">
+                                            </a>
+                                            <div class="card-body">
+                                                <h4>{{product.name}}</h4>
+                                                <p>¥{{product.price}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="container">
+                                <h2 class="modal-title" id="exampleModalLabel">アイテム</h2>
+                                <div class="row mx-auto mt-5">
+                                    <!-- detail 商品 -->
+                                    {% for product in details %}
+                                    {% for tag in product.tags.all %}
+                                    {% if tag.name == p %}
+                                    <div class="col-3 mx-auto">
+                                        <div class="portfolio-link" data-bs-toggle="modal">
+                                            <a data-bs-toggle="modal" href="#{{product.slug}}">
+                                                <img class="card-img-top my_image" src="{{product.image.url}}"
+                                                    alt="{{product.name}}" width="50%" height="50%">
+                                            </a>
+                                            <div class="card-body">
+                                                <h4>{{product.name}}</h4>
+                                                <p>¥{{product.price}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <button class="btn btn-info btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                <i class="fas fa-xmark me-1"></i>
+                                Close Product
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}
+{% endfor %}
+{% endfor %}
