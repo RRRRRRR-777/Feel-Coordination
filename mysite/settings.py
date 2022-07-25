@@ -26,6 +26,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+NUMBER_GROUPING = 3
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # Application definition
 
@@ -59,7 +62,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop/')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop/')],
+        'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop/'), os.path.join(BASE_DIR, 'search', 'templates/'), os.path.join(BASE_DIR, 'cart', 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
