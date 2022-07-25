@@ -162,8 +162,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #cloudinary settings
 CLOUDINARY_STORAGE  = {
     'CLOUD_NAME':'di6xnupvz',
-    'API_KEY':"env('658572551191186')",
-    'API_SECRET':"env('xYFIvz37dMxIBIcebbxU_EBs9b8')"
+    'API_KEY':"658572551191186",
+    'API_SECRET':"xYFIvz37dMxIBIcebbxU_EBs9b8"
 }
 
 MEDIA_URL = '/media/'
