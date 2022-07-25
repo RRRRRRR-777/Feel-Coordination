@@ -13,4 +13,4 @@ def search_result(request):
         products = Product.objects.all().filter(Q(name__contains=query) | Q(tags__name__contains=query))
         details = Detail.objects.all().filter(Q(name__contains=query) | Q(tags__name__contains=query))
 
-    return render(request, 'search.html', {'query': query, 'products': products, 'details': details})
+    return render(request, 'search/search.html', {'query': query, 'products': products, 'details': details})
