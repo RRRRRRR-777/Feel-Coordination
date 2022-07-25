@@ -16,13 +16,15 @@
         <br>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                {% if product.file.url %}
                 <div style="min-width: 18rem; margin-top: 2em;">
                     <model-viewer ar alt="Leoモデル" src="{{ product.file.url }}" ios-src=""
-                        style="width:400px;height:500px;text-align: center; display: block;margin-left: auto; margin-right: auto;"
-                        background-color="#70BCD1" shadow-intensity="0.7" camera-controls interaction-prompt="auto"
-                        auto-rotatearmagic-leap>
+                    style="width:400px;height:500px;text-align: center; display: block;margin-left: auto; margin-right: auto;"
+                    background-color="#70BCD1" shadow-intensity="0.7" camera-controls interaction-prompt="auto"
+                    auto-rotatearmagic-leap>
                     </model-viewer>
                 </div>
+                {% endif %}
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                 <div>
@@ -160,7 +162,7 @@
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="close-modal" data-bs-dismiss="modal">
-                                    <img src="{% static 'img01/close-icon.svg' %}" alt="Close modal" />
+                                    <img src="" alt="Close modal" />
                                 </div>
                                 <div class="container">
                                     <h2 class="row">
