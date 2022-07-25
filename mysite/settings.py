@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'django.contrib.humanize',
 ]
 
@@ -155,3 +157,14 @@ import django_heroku
 django_heroku.settings(locals())
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+#cloudinary settings
+CLOUDINARY_STORAGE  = {
+    'CLOUD_NAME':'di6xnupvz',
+    'API_KEY':"env('658572551191186')",
+    'API_SECRET':"env('xYFIvz37dMxIBIcebbxU_EBs9b8')"
+}
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

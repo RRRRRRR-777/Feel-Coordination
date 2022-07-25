@@ -46,7 +46,7 @@ def all_products(request):
             'posts': posts,
             'apple': 'りんご',
     }
-        
+
     return render(request, 'product_list.html', data)
 
 # 新しい商品detailのやつ
@@ -55,7 +55,7 @@ def Detail_detail(request, detail_slug):
         product = Detail.objects.get(slug=detail_slug)
     except Exception as e:
         raise e
-    
+
     products = Product.objects.all()
 
     query = None
@@ -65,12 +65,12 @@ def Detail_detail(request, detail_slug):
         query = request.GET.get('d')
         detail = Detail.objects.all().order_by('price').filter(Q(subtag__name__contains=query))
 
-    
+
     data = {'product': product,
             'apple': 'りんご',
             'detail': detail,
             'query': query,
             'products': products,
     }
-        
+
     return render(request, 'product_detail.html', data)
