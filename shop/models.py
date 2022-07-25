@@ -25,8 +25,8 @@ class Detail(models.Model):
     slug = models.SlugField(verbose_name='URLに表示される名前', max_length=250)
     description = models.TextField(verbose_name='商品説明')
     price = models.IntegerField(verbose_name='価格')
-    image = models.ImageField(upload_to='product')
-    file = models.FileField(upload_to='product/file', blank=True)
+    image = models.ImageField(upload_to='detail/image')
+    file = models.FileField(upload_to='detail/file', blank=True)
     stock = models.IntegerField(verbose_name='在庫')
     created = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(PostTag, blank=True)
@@ -65,7 +65,7 @@ class Product(models.Model):
     slug = models.SlugField(verbose_name='URLに表示される名前', max_length=250, unique=True)
     description = models.TextField(verbose_name='説明', blank=True)
     price = models.IntegerField()
-    image = models.ImageField(upload_to='product', blank=True)
+    image = models.ImageField(upload_to='prodcut/image', blank=True)
     detail = models.ManyToManyField(Detail)
     stock = models.IntegerField()
     available = models.BooleanField(default=True)
@@ -73,7 +73,7 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     tags = models.ManyToManyField(PostTag, blank=True)
-    file = models.FileField(upload_to='file', blank=True)
+    file = models.FileField(upload_to='product/file', blank=True)
 
     objects = models.Manager()
 
