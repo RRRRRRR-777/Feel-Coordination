@@ -42,9 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',
     'django.contrib.humanize',
 ]
 
@@ -64,7 +62,6 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop/')],
         'DIRS': [os.path.join(BASE_DIR, 'shop', 'templates/shop/'), os.path.join(BASE_DIR, 'search', 'templates/'), os.path.join(BASE_DIR, 'cart', 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -135,8 +132,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 #Heroku database
 import dj_database_url
@@ -157,14 +156,3 @@ import django_heroku
 django_heroku.settings(locals())
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-#cloudinary settings
-CLOUDINARY_STORAGE  = {
-    'CLOUD_NAME':'di6xnupvz',
-    'API_KEY':"658572551191186",
-    'API_SECRET':"xYFIvz37dMxIBIcebbxU_EBs9b8"
-}
-
-MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
