@@ -12,8 +12,8 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(PostTag)
 
 class DetailAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price']
-    list_editable = ['price']
+    list_display = ['name', 'price', 'baroint1', 'baroint2', 'baroint3']
+    list_editable = ['price', 'baroint1', 'baroint2', 'baroint3']
 
 admin.site.register(Detail, DetailAdmin)
 

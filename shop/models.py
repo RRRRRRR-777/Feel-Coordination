@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 
 class PostTag(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=False)
     
     def __str__(self):
         return self.name
@@ -12,7 +12,7 @@ class PostTag(models.Model):
 
 # 個別商品
 class Detail_tag(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, unique=False)
 
     def __str__(self):
         return self.name
@@ -22,7 +22,7 @@ class Detail(models.Model):
         db_table = "detail"
     
     name = models.CharField(verbose_name='商品', max_length=255)
-    slug = models.SlugField(verbose_name='URLに表示される名前', max_length=250)
+    slug = models.SlugField(verbose_name='URLに表示される名前', max_length=250, unique=False)
     description = models.TextField(verbose_name='商品説明')
     price = models.IntegerField(verbose_name='価格')
     image = models.ImageField(upload_to='detail/image')
@@ -62,10 +62,11 @@ class ValidManager(models.Manager):
 
 class Product(models.Model):
     name = models.CharField(verbose_name='コーディネート名', max_length=250, unique=True)
-    slug = models.SlugField(verbose_name='URLに表示される名前', max_length=250, unique=True)
+    slug = models.SlugField(verbose_name='URLに表示される名前', max_length=250, unique=False)
     description = models.TextField(verbose_name='説明', blank=True)
     price = models.IntegerField()
     image = models.ImageField(upload_to='prodcut/image', blank=True)
+    file = models.FileField(upload_to='product/file', blank=True)
     detail = models.ManyToManyField(Detail)
     stock = models.IntegerField()
     available = models.BooleanField(default=True)
@@ -73,7 +74,6 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     tags = models.ManyToManyField(PostTag, blank=True)
-    file = models.FileField(upload_to='product/file', blank=True)
 
     objects = models.Manager()
 
