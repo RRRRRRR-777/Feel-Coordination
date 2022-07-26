@@ -150,6 +150,14 @@ except ImportError:
     pass
 if not DEBUG:
  SECRET_KEY = 'yez^38ih(6lhty+e4)d+9oh#e=k-&&s$k_p=+wx8ytbt+va6pv'
+ # AWS settings
+ 
+ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+ AWS_STORAGE_BUCKET_NAME = 'feel-coordinations'
+ AWS_S3_REGION_NAME = 'ap-northeast-3'
+ 
+ AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 
 import django_heroku
@@ -157,12 +165,3 @@ django_heroku.settings(locals())
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
-# AWS settings
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = 'feel-coordinations'
-AWS_S3_REGION_NAME = 'ap-northeast-3'
-
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')

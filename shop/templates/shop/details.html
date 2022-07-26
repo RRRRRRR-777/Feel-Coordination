@@ -14,13 +14,18 @@
                     <div class="portfolio-item">
                         <div class="mx-auto" style="width: 200px;">
                             <div class="portfolio-link">
-                                {% for subtag in detail.subtag.all %}
-
-                                <!-- dにテンプレートからviewへのテンプレートを入れるためにしている -->
-                                <a href="/{{ detail.slug }}/?d={{ subtag.name }}">
-                                    <img src="{{detail.image.url}}" alt="{{detail.name}}" width="200" height="320">
-                                </a>
-                                {% endfor %}
+                                {% if detail.subtag.all %}
+                                    <!-- dにテンプレートからviewへのテンプレートを入れるためにしている -->
+                                    {% for subtag in detail.subtag.all %}
+                                    <a href="/{{ detail.slug }}/?d={{ subtag.name }}">
+                                        <img src="{{detail.image.url}}" alt="{{detail.name}}" width="200" height="320">
+                                    </a>
+                                    {% endfor %}
+                                {% else %}
+                                    <a href="/{{ detail.slug }}">
+                                        <img src="{{detail.image.url}}" alt="{{detail.name}}" width="200" height="320">
+                                    </a>
+                                {% endif %}
                             </div>
                             <div>
                                 <h5 style="text-align: center;">{{detail.name}}</h5>
