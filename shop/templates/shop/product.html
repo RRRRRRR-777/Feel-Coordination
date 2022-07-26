@@ -100,10 +100,10 @@
                                         <p class="text-uppercase">トータルコーディネート価格 : ¥{{product.price | intcomma}} <span
                                                 style="font-size: 12px;">(税込み)</span></p>
                                         <div style="display: block;margin-left: auto; margin-right: auto; width: auto;">
-                                            <model-viewer ar alt="Leoモデル" src="media/{{ product.file }}" ios-src=""
+                                            <model-viewer ar alt="モデル" src="{{ product.file.url }}" ios-src=""
                                                 style="width:400px;height:500px;text-align: center; display: block;margin-left: auto; margin-right: auto;"
-                                                background-color="#70BCD1" shadow-intensity="0.7" camera-controls
-                                                interaction-prompt="auto" auto-rotatearmagic-leap>
+                                                background-color="#70BCD1" shadow-intensity="0.7" camera-controls interaction-prompt="auto"
+                                                auto-rotatearmagic-leap>
                                             </model-viewer>
                                         </div>
                                         <!-- 商品 -->
