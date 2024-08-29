@@ -2,7 +2,7 @@
 - **触れるコーディネートアプリ**というコンセプトでWebアプリケーションを作成しました
 - コーディネートを提案できるアプリケーションなのですが、服は3Dモデルを表示しさ割れるようになっています。
 - 下記のPDFに詳しく書いてあります。
-- [Feel＿coordinations_資料.pdf](https://github.com/user-attachments/files/16747883/Feel.coordinations_.pdf)
+- [Feel-Coordination資料](https://github.com/RRRRRRR-777/Feel-Coordination/blob/master/Feel＿coordinations_資料.pdf)
 
 
 ## 技術
