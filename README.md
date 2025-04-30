@@ -14,20 +14,23 @@
 - フレームワーク
   - Django
 - インフラ
-  - Heroku
+  - AWS EC2 
   - AWS S3
+  - CloudFlare DNS
+  - CloudFlare SSL Certificate
 
 ## インフラ構成図
 ```mermaid
-graph LR
-    User[User] <-->WebServer[HerokuServer]
-    WebServer <--> DB[(Heroku Postgres)]
-    WebServer <--> S3[(AWS S3)]
+graph TD
+    User([ユーザー]):::person --> CloudflareDNS{{Cloudflare DNS<br>（名前解決）}}:::server
+    CloudflareDNS --> Cloudflare{{Cloudflare<br>（CDN / WAF / SSL）}}:::server
+    Cloudflare -->|HTTPS アクセス| EC2{{AWS EC2<br>（アプリケーションサーバ）}}:::ec2
+    EC2 -->|画像取得| S3[(AWS S3<br>（静的ファイル）)]:::database
 
-    style User fill:#fff,color:#00000,stroke:#000000
-    style WebServer fill:#410093,color:#ffffff,stroke:#ffffff
-    style S3 fill:#493,color:#ffffff,stroke:#ffffff
-    style DB fill:#31648B,color:#ffffff,stroke:#ffffff
+    classDef person shape:person;
+    classDef server fill:#84d,color:#fff,stroke:none;
+    classDef ec2 fill:#e83,color:#fff,stroke:none;
+    classDef database fill:#493,color:#fff,stroke:#fff;
 ```
 
 ## デモ
