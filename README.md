@@ -5,7 +5,7 @@
 - [Feel-Coordination資料](https://github.com/RRRRRRR-777/Feel-Coordination/blob/master/Feel＿coordinations_資料.pdf)
 
 ## 公開URL
-> https://feel-coordinations.herokuapp.com
+> https://feel-coordination.rrrrrrr777.com/admin/
 
 ## EC2 上で Django の HTTPS Web サイトを公開する方法
 > https://steep-sheet-eef.notion.site/EC2-Django-HTTPS-Web-1e4d3bb41e64802b8dbdf90d829b643e?pvs=4
