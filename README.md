@@ -8,6 +8,7 @@
 > https://feel-coordination.rrrrrrr777.com
 
 ## EC2 上で Django の HTTPS Web サイトを公開する方法
+* 手順をドキュメント化しました
 > https://steep-sheet-eef.notion.site/EC2-Django-HTTPS-Web-1e4d3bb41e64802b8dbdf90d829b643e?pvs=4
 
 
