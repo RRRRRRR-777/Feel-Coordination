@@ -7,6 +7,9 @@
 ## 公開URL
 > https://feel-coordinations.herokuapp.com
 
+## EC2 上で Django の HTTPS Web サイトを公開する方法
+> https://steep-sheet-eef.notion.site/EC2-Django-HTTPS-Web-1e4d3bb41e64802b8dbdf90d829b643e?pvs=4
+
 
 ## 技術
 - 言語
