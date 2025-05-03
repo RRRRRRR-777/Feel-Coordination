@@ -17,6 +17,8 @@
   - Python
 - フレームワーク
   - Django
+- DB
+  - PostgreSQL
 - インフラ
   - AWS EC2 
   - AWS S3
@@ -26,15 +28,19 @@
 ## インフラ構成図
 ```mermaid
 graph TD
-    User([ユーザー]):::person --> CloudflareDNS{{Cloudflare DNS<br>（名前解決）}}:::server
-    CloudflareDNS --> Cloudflare{{Cloudflare<br>（CDN / WAF / SSL）}}:::server
+    User([ユーザー<br>（スマートフォン・PC）]):::person
+    User --> CloudflareDNS{{Cloudflare DNS<br>（名前解決）}}:::server
+    CloudflareDNS --> Cloudflare{{Cloudflare}}:::server
     Cloudflare -->|HTTPS アクセス| EC2{{AWS EC2<br>（アプリケーションサーバ）}}:::ec2
-    EC2 -->|画像取得| S3[(AWS S3<br>（静的ファイル）)]:::database
+
+    EC2 -->|画像取得| S3[(AWS S3<br>（画像などの静的ファイル）)]:::storage
+    EC2 -->|データの読み書き| PostgreSQL[(PostgreSQL<br>（リレーショナルデータベース）)]:::database
 
     classDef person shape:person;
     classDef server fill:#84d,color:#fff,stroke:none;
     classDef ec2 fill:#e83,color:#fff,stroke:none;
-    classDef database fill:#493,color:#fff,stroke:#fff;
+    classDef storage fill:#3a6,color:#fff,stroke:none;
+    classDef database fill:#276,color:#fff,stroke:none;
 ```
 
 ## デモ
